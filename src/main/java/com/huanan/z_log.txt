@@ -1,0 +1,86 @@
+1、idea创建项目
+    创建项目后会自动引入一下依赖，但因为这个依赖导致项目不能启动，去掉之后就能启动了
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-tomcat</artifactId>
+        <scope>provided</scope>
+    </dependency>
+
+2、spring boot配置文件 application.properties
+    2.1 项目内置属性
+    2.2 自定义属性
+        使用自定义属性，只需要在需要使用属性的类中添加该属性即可，并加上@Value注解，如下：
+        @Value("${static.picture}")
+        private String picture;
+    2.3 ConfigurationProperties
+        使用该配置时，需要添加对于的依赖
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        配置方式com/huanan/properties/MysqlProperties.java
+        然后在需要使用该属性的类中注入就好，如：com/huanan/study_01/controller/Helloword.java
+
+3 常用注解
+    @RequestMapping 配置url映射
+    @Controller  处理Http请求  请求页面
+    @RestController 处理ajax请求，请求数据，可直接return json字符串
+    @ResponseBody 指定controller为ajax请求，跟@RestController效果一样
+
+4 spring boot 对jsp的支持
+    1、首先添加对jsp的依赖如下
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <version>8.5.6</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet.jsp.jstl</groupId>
+        <artifactId>jstl-api</artifactId>
+        <version>1.2</version>
+        <exclusions>
+            <exclusion>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>org.glassfish.web</groupId>
+        <artifactId>jstl-impl</artifactId>
+        <version>1.2</version>
+        <exclusions>
+            <exclusion>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>javax.servlet.jsp.jstl</groupId>
+                <artifactId>jstl-api</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <scope>provided</scope>
+    </dependency>
+
+    2、然后再application.properties中添加视图配置
+    #Spring boot视图配置
+    spring.mvc.view.prefix=/WEB-INF/
+    spring.mvc.view.suffix=.jsp
+    3、jsp文件放webapp/WEB_INF/目录下
+
+
