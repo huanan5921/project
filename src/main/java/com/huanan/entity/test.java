@@ -15,6 +15,6 @@ package com.huanan.entity;/*
 
 public class test {
   public void hello(){
-    system.out.pringt();
+    System.out.print("");
   }
 }
