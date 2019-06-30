@@ -1,444 +1,141 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8"/>
-<title>首页-Java1234下载</title>
-<link rel="stylesheet" href="/layui/css/layui.css" />
-<link rel="stylesheet" href="/css/css.css" />
+	<meta charset="UTF-8"/>
+	<title th:text="${title}+'-Java1234下载'"></title>
+	<link rel="stylesheet" href="/layui/css/layui.css" />
+	<link rel="stylesheet" href="/css/css.css" />
 </head>
 <body>
-<div class="w1170" style="padding-bottom: 10px;overflow:visible;">
-   	<ul class="layui-nav" lay-filter="">
-	  <li class="layui-nav-item"><a href="/">首页</a></li>
-	  <li class="layui-nav-item"><a href="/toVipPage">VIP购买</a></li>
-	  <li class="layui-nav-item"><a href="http://blog.java1234.com/blog/articles/427.html" target="_blank">领取100积分</a></li>
-	  <li class="layui-nav-item"><a href="http://blog.java1234.com/blog/articles/425.html" target="_blank">领取本站源码</a></li>
-	  <li class="layui-nav-item"><a href="http://blog.java1234.com/blog/articles/428.html" target="_blank">获取本站项目商业授权</a></li>
-	  <li class="layui-nav-item"><a href="http://www.java1234.com/javaxuexiluxiantu.html" target="_blank">Java学习路线图</a></li>
-	  
-	   
-	  
-	  <li class="layui-nav-item" style="float: right;"><a onclick="showRegister()" style="padding-left: 8px;padding-right: 8px;" target="_blank">注册</a></li>
-	  <li class="layui-nav-item" style="float: right;"><a onclick="showLogin()" style="padding-left: 8px;padding-right: 8px;" target="_blank">登录</a></li>
-	</ul>
-</div>
+<div class="w1170" th:include="common/head::#h" style="padding-bottom: 10px;overflow:visible;"></div>
 
 <div class="w1170">
 
 	<div class="pLeft">
-	
+
 		<div class="data_list">
-    		<div class="data_list_title">
-    			<i class="layui-icon layui-icon-search"></i>
+			<div class="data_list_title">
+				<i class="layui-icon layui-icon-search"></i>
 				<span class="head">条件检索</span>
-    		</div>
-    		<div class="data_search">
-    			<div>
-    				<table>
-    					<tr>
-    						<td width="80px" style="padding-top: 0px;padding-bottom: 28px;"><font class="stitle">资源类别：</font></td>
-    						<td>
-    							<ul>
-			    					<li><a href="/"><span id="t_0">全部</span></a></li>
-				    				<li th:each="arcType:${application.allArcTypeList}">
-								  	  	<a href="'/article/list/1?typeId='+${arcType.id}" title="${arcType.name}">
-								  	 	 	<span id="'t_'+${arcType.id}" th:text="${arcType.name}"></span>
-								  	  	</a>
-								   </li>
-			    				</ul>
-    						</td>
-    					</tr>
-    					<tr>
-    						<td>&nbsp;</td>
-    					</tr>
-    					<tr style="border-top: dashed 1px #e6e6e6;height: 60px;">
-    						<td width="80px" style="padding-top: 0px;"><font class="stitle">关键词：</font></td>
-    						<td>
-    							<form action="/article/search" onsubmit="return submitData()">
-    								<div class="layui-row">
-    									<div class="layui-col-md10">
-		    								<input type="text" id="q" name="q" autocomplete="off" class="layui-input" style="height: 30px" />
-    									</div>
-    									<div class="layui-col-md2">
-		    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="layui-btn layui-btn-radius layui-btn-sm" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " />
-    									</div>
-    								</div>
-    							</form>
-    						</td>
-    					</tr>
-    				</table>
-    			</div>
-    			<div>
-    			</div>
-    		</div>
-    	</div>
-		
-		
-		<div class="data_list">
-    		<div class="data_list_title">
-    			<i class="layui-icon layui-icon-template-1"></i>
-				<span class="head">资源列表</span>
-    		</div>
-    		<div class="layui-form">
-			  <table class="layui-table" lay-skin="line">
-			    <colgroup>
-			      <col />
-			      <col width="100" />
-			      <col width="80" />
-			      <col width="120" />
-			      <col width="80" />
-			    </colgroup>
-			    <thead>
-			      <tr>
-			        <th>资源名称</th>
-			        <th>查看次数</th>
-			        <th>上传者</th>
-			        <th>上传日期</th>
-			        <th>积分</th>
-			      </tr> 
-			    </thead>
-			    <tbody>
-			      <tr>
-			        <td><a target="_blank" href="/article/602" title="gson-2.X.jar">gson-2.X.jar</a></td>
-			        <td>160 次</td>
-			        <td>erniu1984</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/601" title="SQL Server中如何解决阻塞和死锁 PDF 下载">SQL Server中如何解决阻塞和死锁 PDF 下载</a></td>
-			        <td>165 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/600" title="Cosmos DB for MongoDB Developers PDF 下载">Cosmos DB for MongoDB Developer</a></td>
-			        <td>104 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/599" title="MySQL的Docker容器化大规模实践 PDF 下载">MySQL的Docker容器化大规模实践 PDF 下载</a></td>
-			        <td>205 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/598" title="安卓6.0源码编译及脱壳环境搭建 PDF 下载">安卓6.0源码编译及脱壳环境搭建 PDF 下载</a></td>
-			        <td>171 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/597" title="Html,JQuery,JS实现幸运转盘 源码 下载">Html,JQuery,JS实现幸运转盘 源码 下载</a></td>
-			        <td>107 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>2</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/596" title="Android项目开发详解 PDF 下载">Android项目开发详解 PDF 下载</a></td>
-			        <td>155 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>2</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/595" title="Netty案例集锦(并发编程篇) PDF 下载">Netty案例集锦(并发编程篇) PDF 下载</a></td>
-			        <td>196 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/594" title="On Java 8 PDF 下载">On Java 8 PDF 下载</a></td>
-			        <td>199 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/593" title="架构设计与原则（2018修订版）PDF 下载">架构设计与原则（2018修订版）PDF 下载</a></td>
-			        <td>138 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/592" title="Webx框架指南 PDF 下载">Webx框架指南 PDF 下载</a></td>
-			        <td>169 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/591" title="JUnit 测试用例的20条最佳实践（中文版）PDF 下载">JUnit 测试用例的20条最佳实践（中文版）PDF 下载</a></td>
-			        <td>161 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/590" title="电商异步消息系统的实践 PDF 下载">电商异步消息系统的实践 PDF 下载</a></td>
-			        <td>158 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>1</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/589" title="微服务架构如何落地实践 PDF 下载">微服务架构如何落地实践 PDF 下载</a></td>
-			        <td>193 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>3</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/588" title="Java分布式电商项目视频教程 下载">Java分布式电商项目视频教程 下载</a></td>
-			        <td>278 次</td>
-			        <td>ccx</td>
-			        <td>2018-09-27</td>
-			        <td>10</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/587" title="Android_TabLayout&amp;ViewPager 视频教程 下载">Android_TabLayout&amp;ViewPager 视频教</a></td>
-			        <td>112 次</td>
-			        <td>擦地</td>
-			        <td>2018-09-26</td>
-			        <td>3</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/586" title="Android_OpenDanmaku弹幕视频教程 下载">Android_OpenDanmaku弹幕视频教程 下载</a></td>
-			        <td>168 次</td>
-			        <td>擦地</td>
-			        <td>2018-09-26</td>
-			        <td>3</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/585" title="Android_CountdownView秒杀视频教程 下载">Android_CountdownView秒杀视频教程 下载</a></td>
-			        <td>193 次</td>
-			        <td>擦地</td>
-			        <td>2018-09-26</td>
-			        <td>2</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/584" title="Android_Banner视频教程 下载">Android_Banner视频教程 下载</a></td>
-			        <td>139 次</td>
-			        <td>擦地</td>
-			        <td>2018-09-26</td>
-			        <td>2</td>
-			      </tr>
-			      <tr>
-			        <td><a target="_blank" href="/article/583" title="Android_JieCaoVideoPlayer 视频教程 下载">Android_JieCaoVideoPlayer 视频教程 </a></td>
-			        <td>104 次</td>
-			        <td>擦地</td>
-			        <td>2018-09-26</td>
-			        <td>3</td>
-			      </tr>
-			    </tbody>
-			  </table>
 			</div>
-			<div align="center"><div class='layui-box layui-laypage layui-laypage-default' id='layui-laypage-1' ><a href='/article/list/1'>首页</a><a href='javascript:;' class='layui-laypage-prev layui-disabled'>上一页</a><span class='layui-laypage-curr'><em class='layui-laypage-em'></em><em>1</em></span><a href='/article/list/2'>2</a><a href='/article/list/3'>3</a><a href='/article/list/2' class='layui-laypage-next'>下一页</a><a href='/article/list/23'>尾页</a></div></div>
-    	</div>
-    	
+			<div class="data_search">
+				<div>
+					<table>
+						<tr>
+							<td width="80px" style="padding-top: 0px;padding-bottom: 28px;"><font class="stitle">资源类别：</font></td>
+							<td>
+								<ul>
+									<li><a href="/"><span id="t_0">全部</span></a></li>
+									<li th:each="arcType:${application.allArcTypeList}">
+										<a th:href="'/article/list/1?typeId='+${arcType.id}" th:title="${arcType.name}">
+											<span th:id="'t_'+${arcType.id}" th:text="${arcType.name}"></span>
+										</a>
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr style="border-top: dashed 1px #e6e6e6;height: 60px;">
+							<td width="80px" style="padding-top: 0px;"><font class="stitle">关键词：</font></td>
+							<td>
+								<form action="/article/search" onsubmit="return submitData()">
+									<div class="layui-row">
+										<div class="layui-col-md10">
+											<input type="text" id="q" name="q" autocomplete="off" class="layui-input" style="height: 30px" />
+										</div>
+										<div class="layui-col-md2">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="layui-btn layui-btn-radius layui-btn-sm" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搜索&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " />
+										</div>
+									</div>
+								</form>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="data_list">
+			<div class="data_list_title">
+				<i class="layui-icon layui-icon-template-1"></i>
+				<span class="head">资源列表</span>
+			</div>
+			<div class="layui-form">
+				<table class="layui-table" lay-skin="line">
+					<colgroup>
+						<col />
+						<col width="100" />
+						<col width="80" />
+						<col width="120" />
+						<col width="80" />
+					</colgroup>
+					<thead>
+					<tr>
+						<th>资源名称</th>
+						<th>查看次数</th>
+						<th>上传者</th>
+						<th>上传日期</th>
+						<th>积分</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="article:${articleList}">
+						<td><a target="_blank" th:href="'/article/'+${article.id}" th:title="${article.name}" th:text="${#strings.length(article.name)>30} ? ${#strings.substring(article.name,0,31)} : ${article.name}"></a></td>
+						<td th:text="${article.view}"></td>
+						<td th:text="${article.user.userName}"></td>
+						<td th:text="${#dates.format(article.publishDate,'yyyy-MM-dd')}"></td>
+						<td th:text="${article.points}">1</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div align="center" th:utext="${pageCode}"></div>
+		</div>
+
 	</div>
-	
+
 	<div class="pRight">
-	
-	
-			<div class="data_list">
-	    		<div class="data_list_title">
-	    			<i class="layui-icon layui-icon-fire"></i>
-					<span class="head">热门资源</span>
-	    		</div>
-	    		<div class="datas">
-	    			<ul>
-	    				<li>
-					  	  	<a target="_blank" href="/article/522" title="微信小程序实战入门 内含完整实例解析 PDF 下载">微信小程序实战入门 内含完整实例解析 PD</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/520" title="黑马 宜立方商城 视频教程 下载">黑马 宜立方商城 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/518" title="SpringCloud实战项目 视频教程  下载">SpringCloud实战项目 视频教程 </a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/508" title="企业大数据处理：Spark、Druid、Flume与Kafka应用实践 PDF 下载">企业大数据处理：Spark、Druid、F</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/499" title="kettle 视频教程 下载">kettle 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/490" title="Cas单点登录 视频教程 下载">Cas单点登录 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/488" title="OSGI 视频教程 下载">OSGI 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/484" title="Jfinal视频教程 下载">Jfinal视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/480" title="高级架构师日志平台之ELKStack实践 视频教程 下载">高级架构师日志平台之ELKStack实践 </a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/478" title="Git分布式版本控制系统权威指南 视频教程 下载">Git分布式版本控制系统权威指南 视频教程</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/474" title="ZeroMQ Netty实战视频教程 下载">ZeroMQ Netty实战视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/473" title="Netty入门到实战 视频教程 下载">Netty入门到实战 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/472" title="storm入门到精通 视频教程 下载">storm入门到精通 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/455" title="Redis从入门到精通、集群与应用 视频教程 下载">Redis从入门到精通、集群与应用 视频教</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/454" title="MongoDB入门 视频教程 下载">MongoDB入门 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/453" title="深入浅出MongoDB应用实战集群及系统架构 视频教程 下载">深入浅出MongoDB应用实战集群及系统架</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/452" title="MySQL数据库高可用实战 视频教程 下载">MySQL数据库高可用实战 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/451" title="大型网站提速之MySQL优化 视频教程 下载">大型网站提速之MySQL优化 视频教程 下</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/450" title="深入浅出Mysql优化性能提升 视频教程 下载">深入浅出Mysql优化性能提升 视频教程 </a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/449" title="实战ActiveMQ集群与应用 视频教程 下载">实战ActiveMQ集群与应用 视频教程 </a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/448" title="Apache-Tomcat集群搭建 视频教程 下载">Apache-Tomcat集群搭建 视频教</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/447" title="Memcached分布式集群 视频教程 下载">Memcached分布式集群 视频教程 下</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/446" title="Tomcat负载均衡、调优核心应用进阶 视频教程 下载">Tomcat负载均衡、调优核心应用进阶 视</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/445" title="分布式数据库架构详解-超大门户百度案例 视频教程 下载">分布式数据库架构详解-超大门户百度案例 视</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/444" title="大型分布式系统案例实战 视频教程 下载">大型分布式系统案例实战 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/443" title="Zookeeper从入门到精通、实战 视频教程 下载">Zookeeper从入门到精通、实战 视频</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/442" title="阿里分布式数据库服务实践 视频教程 下载">阿里分布式数据库服务实践 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/441" title="FastDFS 分布式文件系统集群与应用 视频教程 下载">FastDFS 分布式文件系统集群与应用 </a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/440" title="架构设计之mfs分布式文件系统实战 视频教程 下载">架构设计之mfs分布式文件系统实战 视频教</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/439" title="SOA Dubbo全套高级教程 视频教程 下载">SOA Dubbo全套高级教程 视频教程 </a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/438" title="Activiti5工作流企业级开发实例视频教程 下载">Activiti5工作流企业级开发实例视频</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/437" title="Dubbo入门到精通架构高级课程 视频教程 下载">Dubbo入门到精通架构高级课程 视频教程</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/436" title="zookeeper视频教程 下载">zookeeper视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/435" title="Mycat分布式架构 视频教程 下载">Mycat分布式架构 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/434" title="Java线程并发高级教程 视频教程 下载">Java线程并发高级教程 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/433" title="高并发下的数据库设计 视频教程 下载">高并发下的数据库设计 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/432" title="企业高并发的成熟解决方案 视频教程 下载">企业高并发的成熟解决方案 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/431" title="大数据高并发架构实战 视频教程  下载">大数据高并发架构实战 视频教程  下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/430" title="Java8高并发 视频教程 下载">Java8高并发 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/429" title="八套架构师综合教学视频教程下载">八套架构师综合教学视频教程下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/428" title="架构师-全栈-为微服务全套视频教程 下载">架构师-全栈-为微服务全套视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/427" title="传智播客最新JavaSE 视频教程 下载">传智播客最新JavaSE 视频教程 下载</a>
-					    </li>
-	    				<li>
-					  	  	<a target="_blank" href="/article/400" title="像计算机科学家一样思考Python-think-python PDF">像计算机科学家一样思考Python-thi</a>
-					    </li>
-	    			</ul>
-	    		</div>
-    	</div>
-	
+
+
+		<div class="data_list">
+			<div class="data_list_title">
+				<i class="layui-icon layui-icon-fire"></i>
+				<span class="head">热门资源</span>
+			</div>
+			<div class="datas">
+				<ul>
+					<li th:each="hotArticle:${hotArticleList}">
+						<a target="_blank" th:href="'/article/'+${hotArticle.id}" th:title="${hotArticle.name}" th:text="${#strings.length(hotArticle.name)>20} ? ${#strings.substring(hotArticle.name,0,21)} : ${hotArticle.name}"></a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+
 	</div>
 
 </div>
 
 
-<div class="w1170">
-   	<div class="data_list">
-    		<div class="data_list_title">
-    			<img src="/images/link_icon.png" />
-				<span class="head">友情链接</span>
-    		</div>
-    		<div class="data_link">
-    			<ul>
-    				<li>
-				  	  	<a target="_blank" href="http://www.java1234.com" title="Java1234">
-				  	 	 	<span>Java1234</span>
-				  	  	</a>
-				   </li>
-    				<li>
-				  	  	<a target="_blank" href="http://blog.java1234.com" title="Java1234博客">
-				  	 	 	<span>Java1234博客</span>
-				  	  	</a>
-				   </li>
-    				<li>
-				  	  	<a target="_blank" href="http://www.aiwujiwu.top" title="Java源码资源分享网">
-				  	 	 	<span>Java源码资源分享网</span>
-				  	  	</a>
-				   </li>
-    			</ul>
-    		</div>
-    </div>
-</div>
+<div class="w1170" th:include="common/link::#h"></div>
 
-<div class="w1170" style="padding-top: 40px">
-	<div class="sInfo">
-		Powered by <a href="http://www.java1234.com" target="_blank">Java1234</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/toDeclarePage">免责申明</a>
-		&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" style="color: red" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1002222344&amp;site=qq&amp;menu=yes">侵权举报</a>
-		&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1002222344&amp;site=qq&amp;menu=yes">广告合作</a>
-	</div>
-   	<div class="foot" align="center">Copyright © 2012-2018 Java知识分享网 版权所有</div>
-</div>
+<div class="w1170" th:include="common/foot::#h" style="padding-top: 40px"></div>
 
 <script src="/layui/layui.js"></script>
 <script src="/js/jquery.js"></script>
-<script>
-	/*<![CDATA[*/  
-	layui.use(['element'], function(){
-		  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-	});
-	
+<script th:inline="javascript">
+	/*<![CDATA[*/
+    layui.use(['element'], function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var tMenu=[[${session.tMenu}]];
+        $("#"+tMenu).css("color","red");
+    });
+
 	/*]]>*/
 </script>
 </body>
