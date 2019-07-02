@@ -22,12 +22,19 @@ public interface ArticleService {
 	 * @param properties
 	 * @return
 	 */
-	public List<Article> list(Article s_article, Integer page, Integer pageSize, Direction direction, String... properties);
-	
+	public List<Article> list(Article s_article,Integer page,Integer pageSize,Direction direction,String properties);
+
 	/**
 	 * 根据条件查询总记录数
 	 * @param s_article
 	 * @return
 	 */
 	public Long getTotal(Article s_article);
+
+	/**
+	 * 根据id获取实体
+	 * @param id
+	 * @return
+	 */
+	public Article get(Integer id);
 }

@@ -7,7 +7,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.huanan.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +16,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.huanan.entity.Article;
+import com.huanan.repository.ArticleRepository;
 import com.huanan.service.ArticleService;
 
 /**
@@ -29,10 +29,10 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Autowired
 	private ArticleRepository articleRepository;
-	
+
 	@Override
 	public List<Article> list(Article s_article, Integer page, Integer pageSize, Direction direction,
-			String... properties) {
+							  String properties) {
 		Pageable pageable=new PageRequest(page-1, pageSize, direction, properties);
 		Page<Article> pageArticle = articleRepository.findAll(new Specification<Article>() {
 
@@ -78,6 +78,11 @@ public class ArticleServiceImpl implements ArticleService{
 			}
 		});
 		return count;
+	}
+
+	@Override
+	public Article get(Integer id) {
+		return articleRepository.getOne(id);
 	}
 
 }
